@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Stations from '../components/Stations';
-import React, {Component} from 'react';
+
 
 const convertSongsToStations = function (songsArr) {
   const stations = {};
@@ -9,13 +9,8 @@ const convertSongsToStations = function (songsArr) {
     stations[genre] = stations[genre] || []
     stations[genre].push(song);
   })
-  console.log('stations', stations)
   return stations;
 }
-
-
-
-
 
 function mapStateToProps(state) {
   return {

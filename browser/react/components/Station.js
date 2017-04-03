@@ -13,6 +13,7 @@ const DUMMY_IS_PLAYING = false;
 const DUMMY_TOGGLE_ONE = function () {};
 
 export default function Station (props) {
+  console.log('props', props);
   return (
     <div>
       <h3>{ DUMMY_GENRE_NAME } Station</h3>

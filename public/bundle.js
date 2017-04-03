@@ -15015,10 +15015,6 @@ var _Stations = __webpack_require__(86);
 
 var _Stations2 = _interopRequireDefault(_Stations);
 
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var convertSongsToStations = function convertSongsToStations(songsArr) {
@@ -15028,7 +15024,6 @@ var convertSongsToStations = function convertSongsToStations(songsArr) {
     stations[genre] = stations[genre] || [];
     stations[genre].push(song);
   });
-  console.log('stations', stations);
   return stations;
 };
 
@@ -16988,14 +16983,6 @@ var _Songs = __webpack_require__(40);
 
 var _Songs2 = _interopRequireDefault(_Songs);
 
-var _Stations = __webpack_require__(86);
-
-var _Stations2 = _interopRequireDefault(_Stations);
-
-var _Station = __webpack_require__(343);
-
-var _Station2 = _interopRequireDefault(_Station);
-
 var _axios = __webpack_require__(32);
 
 var _axios2 = _interopRequireDefault(_axios);
@@ -17069,7 +17056,7 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(_reactRouter.Route, { path: '/lyrics', component: _LyricsContainer2.default }),
       _react2.default.createElement(
         _reactRouter.Route,
-        { path: '/stations', component: _StationsContainer2.default, onEnter: onStationsEnter },
+        { path: '/stations', onEnter: onStationsEnter },
         _react2.default.createElement(_reactRouter.Route, { path: '/stations/:genre', component: _StationContainer2.default }),
         _react2.default.createElement(_reactRouter.IndexRoute, { component: _StationsContainer2.default })
       ),
@@ -33870,6 +33857,7 @@ var DUMMY_IS_PLAYING = false;
 var DUMMY_TOGGLE_ONE = function DUMMY_TOGGLE_ONE() {};
 
 function Station(props) {
+  console.log('props', props);
   return _react2.default.createElement(
     'div',
     null,
@@ -33909,13 +33897,16 @@ var _utils = __webpack_require__(33);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// state is just global state, right? ownProps are props on StationContainer? And we have .params.genre b/c of our route path ("/stations/:genre")?
+// state is just global state. ownProps are props on StationContainer. And we have .params.genre b/c of our route path ("/stations/:genre")?
 function mapStateToProps(state, ownProps) {
+  console.log('i am here');
   return {
     genre: ownProps.params.genre,
     songs: state.songs.filter(function (song) {
       return song.genre === ownProps.params.genre;
-    }).map(_utils.convertSong)
+    }).map(_utils.convertSong),
+    currentSong: state.player.currentSong,
+    isPlaying: state.player.isPlaying
   };
 }
 
@@ -33923,6 +33914,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {};
 }
 
+// this allows us to render <Station /> it's implicit now.
 var StationContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Station2.default);
 
 exports.default = StationContainer;
