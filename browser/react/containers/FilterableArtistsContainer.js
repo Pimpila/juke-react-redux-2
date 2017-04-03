@@ -10,9 +10,10 @@ class FilterableArtistsContainer extends React.Component {
 
     super();
 
+    // this stays same b/c it's local state?
     this.state = Object.assign({
       inputValue: ''
-    }, store.getState().artists);
+    }, store.getState().artists); // connecting to give access to store
 
     this.handleChange = this.handleChange.bind(this);
 
@@ -43,12 +44,21 @@ class FilterableArtistsContainer extends React.Component {
       <div>
         <FilterInput
           handleChange={this.handleChange}
-          inputValue={inputValue}
+          inputValue={inputValue} // stays same, right?
         />
-        <Artists artists={filteredArtists}/>
+        <Artists artists={filteredArtists} />
       </div>
     );
   }
 }
 
-export default FilterableArtistsContainer;
+
+
+
+function mapStateToProps(state) {
+
+}
+
+export default connect(mapStateToProps)(FilterableArtistsContainer);
+
+//export default FilterableArtistsContainer;

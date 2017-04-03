@@ -14576,11 +14576,12 @@ var FilterableArtistsContainer = function (_React$Component) {
   function FilterableArtistsContainer() {
     _classCallCheck(this, FilterableArtistsContainer);
 
+    // this stays same b/c it's local state?
     var _this = _possibleConstructorReturn(this, (FilterableArtistsContainer.__proto__ || Object.getPrototypeOf(FilterableArtistsContainer)).call(this));
 
     _this.state = Object.assign({
       inputValue: ''
-    }, _store2.default.getState().artists);
+    }, _store2.default.getState().artists); // connecting to give access to store
 
     _this.handleChange = _this.handleChange.bind(_this);
 
@@ -14622,7 +14623,7 @@ var FilterableArtistsContainer = function (_React$Component) {
         null,
         _react2.default.createElement(_FilterInput2.default, {
           handleChange: this.handleChange,
-          inputValue: inputValue
+          inputValue: inputValue // stays same, right?
         }),
         _react2.default.createElement(_Artists2.default, { artists: filteredArtists })
       );
@@ -14632,7 +14633,11 @@ var FilterableArtistsContainer = function (_React$Component) {
   return FilterableArtistsContainer;
 }(_react2.default.Component);
 
-exports.default = FilterableArtistsContainer;
+function mapStateToProps(state) {}
+
+exports.default = connect(mapStateToProps)(FilterableArtistsContainer);
+
+//export default FilterableArtistsContainer;
 
 /***/ }),
 /* 149 */
