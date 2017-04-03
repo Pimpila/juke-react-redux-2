@@ -33845,33 +33845,21 @@ var _Songs2 = _interopRequireDefault(_Songs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DUMMY_GENRE_NAME = 'Jazz';
-var DUMMY_SONGS = [{
-  id: 1,
-  name: "A Love Supreme",
-  genre: "Jazz",
-  artists: [{ name: "John Coltrane" }]
-}];
-var DUMMY_CURRENT_SONG = {};
-var DUMMY_IS_PLAYING = false;
-var DUMMY_TOGGLE_ONE = function DUMMY_TOGGLE_ONE() {};
-
 function Station(props) {
-  console.log('props', props);
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(
       'h3',
       null,
-      DUMMY_GENRE_NAME,
+      props.genre,
       ' Station'
     ),
     _react2.default.createElement(_Songs2.default, {
-      songs: DUMMY_SONGS,
-      currentSong: DUMMY_CURRENT_SONG,
-      isPlaying: DUMMY_IS_PLAYING,
-      toggleOne: DUMMY_TOGGLE_ONE
+      songs: props.songs,
+      currentSong: props.currentSong,
+      isPlaying: props.isPlaying,
+      toggleOne: props.toggleOne
     })
   );
 }
@@ -33895,11 +33883,12 @@ var _Station2 = _interopRequireDefault(_Station);
 
 var _utils = __webpack_require__(33);
 
+var _player = __webpack_require__(41);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // state is just global state. ownProps are props on StationContainer. And we have .params.genre b/c of our route path ("/stations/:genre")?
 function mapStateToProps(state, ownProps) {
-  console.log('i am here');
   return {
     genre: ownProps.params.genre,
     songs: state.songs.filter(function (song) {
@@ -33911,7 +33900,11 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  return {};
+  return {
+    toggleOne: function toggleOne(song, list) {
+      dispatch((0, _player.toggleSong)(song, list));
+    }
+  };
 }
 
 // this allows us to render <Station /> it's implicit now.
