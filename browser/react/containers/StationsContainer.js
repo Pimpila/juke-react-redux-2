@@ -13,10 +13,13 @@ const convertSongsToStations = function (songsArr) {
   return stations;
 }
 
+
+
+
+
 function mapStateToProps(state) {
   return {
-    stations: convertSongsToStations(state.songs),
-    genres: someFunc
+    stations: convertSongsToStations(state.songs)
   }
 }
 
@@ -24,5 +27,8 @@ function mapDispatchToProps(dispatch) {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Stations)
+const StationsContainer = connect(mapStateToProps, mapDispatchToProps)(Stations);
+export default StationsContainer;
+
+// or for short: export default connect(mapStateToProps, mapDispatchToProps)(Stations)
 
