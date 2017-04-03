@@ -18,11 +18,7 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {}
-}
-
-const StationsContainer = connect(mapStateToProps, mapDispatchToProps)(Stations);
+const StationsContainer = connect(mapStateToProps)(Stations);
 export default StationsContainer;
 
 // or for short: export default connect(mapStateToProps, mapDispatchToProps)(Stations)

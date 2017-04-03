@@ -1,5 +1,5 @@
 import React from 'react';
-import Songs from '../components/Songs';
+import SongsContainer from '../containers/SongsContainer';
 
 export default function Album (props) {
 
@@ -14,12 +14,9 @@ export default function Album (props) {
         <h3>{ album.name }</h3>
         <img src={ album.imageUrl } className="img-thumbnail"/>
       </div>
-      <Songs
-        songs={album.songs}
-        currentSong={currentSong}
-        isPlaying={isPlaying}
-        toggleOne={toggleOne}/>
+      <SongsContainer songs={album.songs} />
     </div>
   );
 
 }
+

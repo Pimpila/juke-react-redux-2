@@ -1,16 +1,16 @@
 import {connect} from 'react-redux';
-import Album from '../components/Album';
+import Songs from '../components/Songs';
 import {toggleSong} from '../action-creators/player';
 
 function mapStateToProps(state, ownProps) {
   return {
-    selectedAlbum: state.albums.selected,
+    songs: ownProps.songs,
     currentSong: state.player.currentSong,
-    isPlaying: state.player.isPlaying,
+    isPlaying: state.player.isPlaying
   }
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     toggleOne: function(song, list) {
       dispatch(toggleSong(song, list))
@@ -18,6 +18,6 @@ function mapDispatchToProps(dispatch, ownProps) {
   }
 }
 
-const AlbumContainer = connect(mapStateToProps, mapDispatchToProps)(Album);
+const SongsContainer = connect(mapStateToProps, mapDispatchToProps)(Songs);
 
-export default AlbumContainer;
+export default SongsContainer;
